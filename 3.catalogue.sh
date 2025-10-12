@@ -32,12 +32,14 @@ validate $? "enabling nodejs"
 dnf install nodejs -y &>>$log_file
 validate $? "installing nodejs"
 
-#id roboshop
-#if [ $? -ne 0 ]; then
+id roboshop &>>$log_file
+if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-#else
+    validate $? "creating system user"
+else
    # echo -e "user is alrady exist.......$y SKIPPING $N"
 fi
+
 mkdir -p /app 
 validate $? "creating app"
 
@@ -62,7 +64,7 @@ validate $? "copying catalogue services"
 systemctl daemon-reload
 
 systemctl enable catalogue &>>$log_file
-validate $? "ienabling catalogue"
+validate $? "enabling catalogue"
 
 systemctl start catalogue &>>$log_file
 validate $? "starting catalogue"
