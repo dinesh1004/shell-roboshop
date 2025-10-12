@@ -21,11 +21,11 @@ validate(){
     fi
 }
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp mongo.repo /etc/yum.repos.d/mongo.repo/
 validate $? "adding mongo repo"
 
 dnf install mongodb-org -y &>>$log_file
-validate $? "ainstalling mongoDB"
+validate $? "installing mongoDB"
 
 systemctl enable mongod 
 validate $? "enabling mongoDB"
