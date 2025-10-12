@@ -44,7 +44,7 @@ fi
 mkdir -p /app &>>$log_file
 validate $? "creating app"
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$log_file
 validate $? "downloading zip file"
 
 cd /app 
@@ -78,11 +78,11 @@ validate $? "installing mongoDB client"
 
 INDEX=$(mongosh mongodb.daws86s.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 if [ $INDEX -le 0 ]; then
-    mongosh --host $mongodb_host </app/db/master-data.js
-    validate $? "load catalogue products"
+    mongosh --host $mongodb_host </app/db/master-data.js &>>$log_file
+    validate $? "Load catalogue products"
 else
     echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
 fi
 
 systemctl restart catalogue
-VALIDATE $? "Restarted catalogue"
+validate $? "Restarted catalogue"
