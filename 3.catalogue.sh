@@ -8,6 +8,7 @@ script=$( echo $0 | cut -d "." -f2 )
 log_file="$folder/$script.log"
 mkdir -p $folder
 directory=$PWD
+echo $directory
 mongodb_host=mongodb.suneel.shop
 echo "this scrip has started at : $(date)"
 if [ $userid -ne 0 ]; then
