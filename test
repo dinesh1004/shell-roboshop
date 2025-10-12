@@ -107,16 +107,16 @@ validate $? "Installing MongoDB client"
 # ----------------------------
 # Load catalogue DB if missing
 # ----------------------------
-INDEX=$(mongosh "$mongodb_host" --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')" 2>/dev/null)
-INDEX=${INDEX:--1}   # Default -1 if empty
+# INDEX=$(mongosh "$mongodb_host" --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')" 2>/dev/null)
+# INDEX=${INDEX:--1}   # Default -1 if empty
 
-if [ "$INDEX" -eq -1 ]; then
-    echo "Catalogue DB not found. Loading master data..." | tee -a "$log_file"
+# if [ "$INDEX" -eq -1 ]; then
+#     echo "Catalogue DB not found. Loading master data..." | tee -a "$log_file"
     mongosh --host "$mongodb_host" </app/db/master-data.js &>>"$log_file"
     validate $? "Load catalogue products"
-else
-    echo -e "Catalogue products already loaded ... $Y SKIPPING $N" | tee -a "$log_file"
-fi
+# else
+#     echo -e "Catalogue products already loaded ... $Y SKIPPING $N" | tee -a "$log_file"
+# fi
 
 # ----------------------------
 # Restart catalogue service
