@@ -23,13 +23,13 @@ validate(){
     fi
 }
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>>$log_file
 validate $? "disabling nodejs"
 
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>>$log_file
 validate $? "enabling nodejs"
 
-dnf install nodejs -y
+dnf install nodejs -y &>>$log_file
 validate $? "installing nodejs"
 
 id roboshop
@@ -53,7 +53,7 @@ validate $? "cremoving existing code from app"
 unzip /tmp/catalogue.zip
 validate $? "unzipping"
 
-npm install 
+npm install &>>$log_file
 validate $? "installing dependencies"
 
 cp $directory/catalogue.service /etc/systemd/system/catalogue.service
@@ -61,16 +61,16 @@ validate $? "copying catalogue services"
 
 systemctl daemon-reload
 
-systemctl enable catalogue 
+systemctl enable catalogue &>>$log_file
 validate $? "ienabling catalogue"
 
-systemctl start catalogue 
+systemctl start catalogue &>>$log_file
 validate $? "starting catalogue"
 
 cp $directory/mongo.repo /etc/yum.repos.d/mongo.repo
 validate $? "copy mongo repo"
 
-dnf install mongodb-mongosh -y
+dnf install mongodb-mongosh -y &>>$log_file
 validate $? "installing mongoDB client"
 
 INDEX=$(mongosh mongodb.daws86s.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
