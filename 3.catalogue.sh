@@ -76,13 +76,13 @@ validate $? "copy mongo repo"
 dnf install mongodb-mongosh -y &>>$log_file
 validate $? "installing mongoDB client"
 
-INDEX=$(mongosh mongodb.daws86s.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
-if [ $INDEX -le -1 ]; then
-    mongosh --host $mongodb_host </app/db/master-data.js &>>$log_file
-    validate $? "Load catalogue products"
-else
-    echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
-fi
+# INDEX=$(mongosh mongodb.daws86s.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
+# if [ $INDEX -le -1 ]; then
+mongosh --host $mongodb_host </app/db/master-data.js &>>$log_file
+validate $? "Load catalogue products"
+# else
+#     echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
+# fi
 
 systemctl restart catalogue
 validate $? "Restarted catalogue"
