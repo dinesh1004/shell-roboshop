@@ -32,11 +32,11 @@ validate $? "enabling nodejs"
 dnf install nodejs -y &>>$log_file
 validate $? "installing nodejs"
 
-id roboshop
-if [ $? -ne 0 ]; then
+#id roboshop
+#if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-else
-    echo -e "user is alrady exist.......$y SKIPPING $N"
+#else
+   # echo -e "user is alrady exist.......$y SKIPPING $N"
 fi
 mkdir -p /app 
 validate $? "creating app"
