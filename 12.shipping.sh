@@ -63,11 +63,11 @@ systemctl start shipping &>>log_file
 dnf install mysql -y &>>log_file
 validate $? "installing MYsql"
 
-mysql -h $mysql.subeel.shop -uroot -pRoboShop@1 -p -e 'use cities'
+mysql -h mysql.suneel.shop -uroot -pRoboShop@1 -p -e 'use cities'
 if [ $? -ne 0 ]; then 
-    mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/schema.sql
-    mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/app-user.sql 
-    mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/master-data.sql
+    mysql -h mysql.suneel.shop -uroot -pRoboShop@1 < /app/db/schema.sql
+    mysql -h mysql.suneel.shop -uroot -pRoboShop@1 < /app/db/app-user.sql 
+    mysql -h mysql.suneel.shop -uroot -pRoboShop@1 < /app/db/master-data.sql
 else 
     echo " all cities data is already loaded in to DB....$Y KIPPING $N"
 fi 
