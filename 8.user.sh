@@ -39,10 +39,10 @@ else
     echo -e "roboshop user is already exist.....$Y skipping $N"
 fi
 
-mkdir /app 
+mkdir -p /app 
 
 rm -rf /app/*
-VALIDATE $? "Removing existing code"
+validate $? "Removing existing code"
 
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip &>>log_file
 validate $? "downloading the application"
