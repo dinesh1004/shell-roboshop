@@ -56,7 +56,7 @@ cd /app
 pip3 install -r requirements.txt &>>log_file
 validate $? "installing requirements"
 
-cp $script_dir/payment.service /etc/systemd/system/payment.service
+cp /home/ec2-user/shell-roboshop/payment.service /etc/systemd/system/payment.service
 
 systemctl daemon-reload
 systemctl enable payment &>>log_file
