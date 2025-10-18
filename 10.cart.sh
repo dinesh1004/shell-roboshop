@@ -11,7 +11,6 @@ directory=$PWD
 echo $directory
 mongodb_host=mongodb.suneel.shop
 script_dir=$PWD
-echo "$(script_dir)"
 echo "this scrip has started at : $(date)"
 
 if [ $userid -ne 0 ]; then
@@ -42,7 +41,10 @@ else
     echo -e "User already exist ... $Y SKIPPING $N"
 fi
 
+#application setup
 mkdir /app 
+rm -rf /app/*
+VALIDATE $? "Removing existing code"
 curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip &>>log_file
 validate $? "downloading application"
 cd /app 
