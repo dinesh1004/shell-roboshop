@@ -11,7 +11,6 @@ directory=$PWD
 echo $directory
 mongodb_host=mongodb.suneel.shop
 script_dir=$PWD
-echo "$(script_dir)"
 echo "this scrip has started at : $(date)"
 
 if [ $userid -ne 0 ]; then
@@ -41,6 +40,9 @@ else
 fi
 
 mkdir /app 
+
+rm -rf /app/*
+VALIDATE $? "Removing existing code"
 
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip &>>log_file
 validate $? "downloading the application"
