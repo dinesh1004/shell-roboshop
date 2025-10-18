@@ -42,7 +42,7 @@ else
 fi
 
 #application setup
-mkdir /app 
+mkdir -p /app 
 rm -rf /app/*
 validate $? "Removing existing code"
 curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip &>>log_file
