@@ -11,7 +11,6 @@ directory=$PWD
 echo $directory
 mongodb_host=mongodb.suneel.shop
 script_dir=$PWD
-echo "$(script_dir)"
 echo "this scrip has started at : $(date)"
 
 if [ $userid -ne 0 ]; then
