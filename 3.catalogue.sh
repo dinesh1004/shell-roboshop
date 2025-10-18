@@ -45,6 +45,9 @@ fi
 mkdir -p /app &>>$log_file
 validate $? "creating app"
 
+rm -rf /app/*
+VALIDATE $? "Removing existing code"
+
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$log_file
 validate $? "downloading zip file"
 
