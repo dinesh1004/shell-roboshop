@@ -12,7 +12,6 @@ echo $directory
 mongodb_host=mongodb.suneel.shop
 script_dir=$PWD
 mysql_host=mysql.suneel.shop
-echo "$(script_dir)"
 echo "this scrip has started at : $(date)"
 
 if [ $userid -ne 0 ]; then
@@ -38,11 +37,15 @@ else
     echo "roboshop user already exist"
 fi
 
-mkdir /app 
+mkdir -p /app 
 validate $? "creating app directory"
+
+rm -rf /app/*
+VALIDATE $? "Removing existing code"
 
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip 
 validate $? "adownloading application"
+
 
 cd /app 
 unzip /tmp/payment.zip
@@ -58,5 +61,6 @@ cp $script_dir/payment.service /etc/systemd/system/payment.service
 systemctl daemon-reload
 systemctl enable payment 
 validate $? "enabling payment"
+
 systemctl start payment
 validate $? "starting payment"
