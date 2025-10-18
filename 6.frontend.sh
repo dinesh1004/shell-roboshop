@@ -37,14 +37,13 @@ validate $? "starting nginx"
 
 rm -rf /usr/share/nginx/html/* 
 validate $? "removing default content"
-
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>>log_file
 validate $? "downloading application"
-
 cd /usr/share/nginx/html 
-
 unzip /tmp/frontend.zip &>>log_file
 validate $? "unzipping the application"
+
+rm -rf /etc/nginx/nginx.conf
 
 cp $script_dir/nginx.conf /etc/nginx/nginx.conf
 validate $? "copying  nginx.conf"
