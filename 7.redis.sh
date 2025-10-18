@@ -7,10 +7,8 @@ folder="/var/log/mongodb-log"
 script=$( echo $0 | cut -d "." -f2 )
 log_file="$folder/$script.log"
 mkdir -p $folder
-directory=$PWD
-echo $directory
-mongodb_host=mongodb.suneel.shop
 script_dir=$PWD
+mongodb_host=mongodb.suneel.shop
 echo "$(script_dir)"
 echo "this scrip has started at : $(date)"
 
