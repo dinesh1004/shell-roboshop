@@ -27,6 +27,10 @@ validate(){
         echo -e "$2 is......$G success $N" | tee -a $log_file
     fi
 }
+
+cp $directory/nginx.conf /etc/nginx/nginx.conf
+validate $? "copying  nginx.conf"
+
 dnf module disable nginx -y &>>log_file
 dnf module enable nginx:1.24 -y &>>log_file
 dnf install nginx -y &>>log_file
@@ -50,8 +54,7 @@ cd /usr/share/nginx/html
 unzip /tmp/frontend.zip &>>log_file
 validate $? "unzipping the application"
 
-cp $directory/nginx.conf /etc/nginx/nginx.conf
-validate $? "copying  nginx.conf"
+
 
 systemctl restart nginx 
 validate $? "restarting  nginx"
