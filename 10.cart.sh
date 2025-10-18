@@ -44,7 +44,7 @@ fi
 #application setup
 mkdir /app 
 rm -rf /app/*
-VALIDATE $? "Removing existing code"
+validate $? "Removing existing code"
 curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip &>>log_file
 validate $? "downloading application"
 cd /app 
@@ -60,7 +60,7 @@ cp $script_dir/cart.service /etc/systemd/system/cart.service
 systemctl daemon-reload
 
 systemctl enable cart &>>log_file
-VALIDATE $? "enabled cart"
+validate $? "enabled cart"
 
 systemctl start cart
-VALIDATE $? "Restarted cart"
+validate $? "Restarted cart"
