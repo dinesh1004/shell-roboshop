@@ -32,6 +32,7 @@ dnf module enable nginx:1.24 -y &>>log_file
 dnf install nginx -y &>>log_file
 validate $? "installing nginx"
 
+
 systemctl enable nginx &>>log_file
 validate $? "enabling nginx"
 
@@ -51,7 +52,7 @@ validate $? "unzipping the application"
 
 rm -rf /etc/nginx/nginx.conf
 
-cp $script_dir/nginx.conf /etc/nginx/nginx.conf
+cp $directory/nginx.conf /etc/nginx/nginx.conf
 validate $? "copying  nginx.conf"
 
 systemctl restart nginx 
