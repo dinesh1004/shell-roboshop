@@ -33,13 +33,17 @@ validate $? "installing nginx"
 
 systemctl enable nginx &>>log_file
 validate $? "enabling nginx"
+systemctl start nginx 
 validate $? "starting nginx"
 
 rm -rf /usr/share/nginx/html/* 
+
 validate $? "removing default content"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>>log_file
 validate $? "downloading application"
+
 cd /usr/share/nginx/html 
+
 unzip /tmp/frontend.zip &>>log_file
 validate $? "unzipping the application"
 
