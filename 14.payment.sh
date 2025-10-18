@@ -41,26 +41,26 @@ mkdir -p /app
 validate $? "creating app directory"
 
 rm -rf /app/*
-VALIDATE $? "Removing existing code"
+validate $? "Removing existing code"
 
-curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip 
+curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip &>>log_file
 validate $? "adownloading application"
 
 
 cd /app 
-unzip /tmp/payment.zip
+unzip /tmp/payment.zip &>>log_file
 validate $? "aunzipping application"
 
 cd /app 
 
-pip3 install -r requirements.txt
+pip3 install -r requirements.txt &>>log_file
 validate $? "installing requirements"
 
 cp $script_dir/payment.service /etc/systemd/system/payment.service
 
 systemctl daemon-reload
-systemctl enable payment 
+systemctl enable payment &>>log_file
 validate $? "enabling payment"
 
-systemctl start payment
+systemctl start payment &>>log_file
 validate $? "starting payment"
