@@ -75,7 +75,7 @@ validate $? "installing mongod"
 
 INDEX=$(mongosh mongodb.suneel.shop --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 if [ $INDEX -le 0 ]; then
-    mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$log_file
+    mongosh --host mongodb.suneel.shop </app/db/master-data.js &>>$log_file
     validate $? "Load catalogue products"
 else
     echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
