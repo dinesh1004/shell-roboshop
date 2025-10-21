@@ -23,7 +23,7 @@ validate(){
 }
 
 dnf module disable nodejs -y &>>log_file
-validat $? "disabling nodejs"
+validate $? "disabling nodejs"
 
 dnf module enable nodejs:20 -y &>>log_file
 validat $? "disabling nodejs:20"
@@ -51,25 +51,25 @@ validate $? "changing to app directory"
 rm -rf /app/*
 validate $? "removing existing code"
 
-unzip /tmp/catalogue.zip
+unzip /tmp/catalogue.zip &>>log_file
 validate $? "unzipping application"
 
 cd /app 
 
-npm install 
+npm install &>>log_file
 validate $? "installing dependencies"
 
 systemctl daemon-reload
-systemctl enable catalogue 
+systemctl enable catalogue &>>log_file
 validate $? "enabling catalogue"
 
-systemctl start catalogue
+systemctl start catalogue &>>log_file
 validate $? "starting  catalogue"
 
 cp $script_dir/mongo.repo /etc/yum.repos.d/mongo.repo
 validate $? "copying mongo repo"
 
-dnf install mongodb-mongosh -y
+dnf install mongodb-mongosh -y &>>log_file
 validate $? "installing mongod"
 
 INDEX=$(mongosh mongodb.suneel.shop --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
@@ -80,6 +80,6 @@ else
     echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
 fi
 
-systemctl restart catalogue
+systemctl restart catalogue &>>log_file
 validate $? "Restarted catalogue"
 
