@@ -5,7 +5,7 @@ Description=Payment Service
 User=root
 WorkingDirectory=/app
 // highlight-start
-Environment=CART_HOST=cart.suneel.shop
+Environment=CART_HOST=172.31.24.61
 Environment=CART_PORT=8080
 Environment=USER_HOST=172.31.24.89
 Environment=USER_PORT=8080
