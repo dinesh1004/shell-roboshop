@@ -44,6 +44,9 @@ validate $? "downloading application"
 
 cd /app 
 
+rm -rf /app/*
+validate $? "removing old code"
+
 unzip /tmp/shipping.zip &>>log_file
 validate $? "unzipping application"
 
