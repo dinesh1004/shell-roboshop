@@ -4,8 +4,8 @@ Description=Shipping Service
 [Service]
 User=roboshop
 // highlight-start
-Environment=CART_ENDPOINT=172.31.24.61:8080
-Environment=DB_HOST=mysql.suneel.shop
+Environment=CART_ENDPOINT=172.31.24.61:8080 
+Environment=DB_HOST=172.31.24.242
 // highlight-end
 ExecStart=/bin/java -jar /app/shipping.jar
 SyslogIdentifier=shipping
