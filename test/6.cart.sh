@@ -53,8 +53,10 @@ cd /app
 npm install &>>log_file
 validate $? "installing dependencies"
 
+# cp $script_dir/cart.service /etc/systemd/system/cart.service
+# validate $? "copying cart.services"
 cp $script_dir/cart.service /etc/systemd/system/cart.service
-validate $? "copying cart.services"
+validate $? "copying cart service file"
 
 systemctl daemon-reload
 
