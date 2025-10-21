@@ -24,8 +24,8 @@ validate(){
         echo -e "$2 is......$G success $N" | tee -a $log_file
     fi
 }
-cp $script_dir/cart.service /etc/systemd/system/cart.service
-validate $? "copying cart service file"
+# cp $script_dir/cart.service /etc/systemd/system/cart.service
+# validate $? "copying cart service file"
 
 dnf module disable nodejs -y &>>log_file
 validate $? "disabling nodejs" 
@@ -57,8 +57,8 @@ cd /app
 npm install &>>log_file
 validate $? "installing dependencies"
 
-# cp $script_dir/cart.service /etc/systemd/system/cart.service
-# validate $? "copying cart.services"
+cp $script_dir/cart.service /etc/systemd/system/cart.service
+validate $? "copying cart.services"
 # cp $script_dir/cart.service /etc/systemd/system/cart.service
 # validate $? "copying cart service file"
 
