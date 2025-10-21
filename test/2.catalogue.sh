@@ -50,13 +50,13 @@ validate $? "downloading the application"
 
 cd /app 
 
-unzip /tmp/catalogue.zip &>>log_file
+unzip /tmp/catalogue.zip -d &>>log_file
 validate $? "unzipping application"
 
 npm install -y &>>log_file
 validate $? "installing dependencies"
 
-
+cp $script_dir/catalogue.service /etc/systemd/system/catalogue.service
 
 systemctl daemon-reload
 
