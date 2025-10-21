@@ -8,6 +8,7 @@ folder="/var/log/mongodb-log"
 script=$( echo $0)
 log_file="$folder/$script.log"
 mkdir -p $folder
+script_dir=$PWD
 echo "this scrip has started at : $(date)"
 if [ $userid -ne 0 ]; then
     echo "ERROR please run the script with sudo privillages"
