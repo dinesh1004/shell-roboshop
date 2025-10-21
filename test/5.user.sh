@@ -35,11 +35,14 @@ if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
     validate $? "adding roboshop user"
 else 
-    echo "roboshop user already exist......$Y SKIPPING $N"
+    echo -e "roboshop user already exist......$Y SKIPPING $N"
 fi 
 
 mkdir -p /app 
 validate $? "creating app directory"
+
+rm -rf /app/*
+validate $? "removing old data"
 
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip &>>log_file
 validate $? "downloading th eapplication"
