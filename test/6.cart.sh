@@ -87,10 +87,11 @@ mkdir -p $folder
 echo "This script has started at: $(date)" | tee -a $log_file
 
 # Define the directory where the script is located (where cart.service should be)
-script_dir=$(dirname $0)
-if [ "$script_dir" = "." ]; then
-    script_dir=$PWD
-fi
+# script_dir=$(dirname $0)
+# if [ "$script_dir" = "." ]; then
+#     script_dir=$PWD
+# fi
+script_dir=$PWD
 
 if [ $userid -ne 0 ]; then
     echo "ERROR: Please run the script with sudo privileges" | tee -a $log_file
