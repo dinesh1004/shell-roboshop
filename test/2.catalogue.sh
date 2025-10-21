@@ -73,9 +73,9 @@ validate $? "copying mongo repo"
 dnf install mongodb-mongosh -y &>>log_file
 validate $? "installing mongod"
 
-INDEX=$(mongosh mongodb.suneel.shop --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
+INDEX=$(mongosh 172.31.24.123 --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 if [ $INDEX -le 0 ]; then
-    mongosh --host mongodb.suneel.shop </app/db/master-data.js &>>$log_file
+    mongosh --host 172.31.24.123 </app/db/master-data.js &>>$log_file
     validate $? "Load catalogue products"
 else
     echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
