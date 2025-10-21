@@ -3,7 +3,7 @@ Description = Cart Service
 [Service]
 User=roboshop
 // highlight-start
-Environment=REDIS_ENDPOINT=redis.suneel.shop
+Environment=REDIS_ENDPOINT=172.31.28.41
 Environment=CATALOGUE_ENDPOINT=catalogue.suneel.shop
 Environment=CATALOGUE_PORT=8080
 // highlight-end
