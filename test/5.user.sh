@@ -23,11 +23,11 @@ validate(){
     fi
 }
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>>log_file
 validate $? "disabling nodejs"
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>>log_file
 validate $? "enabling nodejs:20"
-dnf install nodejs -y
+dnf install nodejs -y &>>log_file
 validate $? "installing  nodejs"
 
 id roboshop &>>log_file
