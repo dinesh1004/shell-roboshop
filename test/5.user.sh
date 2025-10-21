@@ -52,7 +52,10 @@ cd /app
 npm install &>>log_file
 validate $? "installing dependencies"
 
+cp $script_dir/user.service /etc/systemd/system/user.service
+
 systemctl daemon-reload
+
 systemctl enable user &>>log_file
 validate $? "enabling user"
 
