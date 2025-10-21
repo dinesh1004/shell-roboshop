@@ -41,6 +41,7 @@ else
     echo -e "roboshop user is already exist........$Y skipping $N"
 fi
 
+
 mkdir -p /app 
 validate $? "creating app directory"
 
@@ -54,6 +55,8 @@ validate $? "unzipping application"
 
 npm install -y &>>log_file
 validate $? "installing dependencies"
+
+cp $script_dir/catalogue.service /etc/systemd/system/catalogue.service
 
 systemctl daemon-reload
 
